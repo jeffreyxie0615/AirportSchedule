@@ -4,9 +4,9 @@
 #include <vector>
 #include <algorithm>
 #include <chrono>
-#include "Plane.h"
-#include "Crew.h"
-#include "Flight.h"
+#include "include/Plane.h"
+#include "include/Crew.h"
+#include "include/Flight.h"
 
 using namespace std;
     // read in Plane

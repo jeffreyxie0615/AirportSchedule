@@ -1,0 +1,42 @@
+# depslib dependency file v1.0
+1600223831 source:c:\users\jeffr\airport\main.cpp
+	<iostream>
+	<fstream>
+	<sstream>
+	<vector>
+	<algorithm>
+	<chrono>
+	"include/Plane.h"
+	"include/Crew.h"
+	"include/Flight.h"
+
+1600223688 source:c:\users\jeffr\airport\src\crew.cpp
+	"../include/Crew.h"
+	<iostream>
+	<unistd.h>
+
+1600223711 source:c:\users\jeffr\airport\src\flight.cpp
+	"../include/Flight.h"
+	"../include/Plane.h"
+	"../include/Crew.h"
+	<iostream>
+
+1600223694 source:c:\users\jeffr\airport\src\plane.cpp
+	"../include/Plane.h"
+	<fstream>
+	<iostream>
+
+1600220823 c:\users\jeffr\airport\include\crew.h
+	<string>
+	<vector>
+
+1600220823 c:\users\jeffr\airport\include\plane.h
+	<string>
+	<vector>
+
+1600220823 c:\users\jeffr\airport\include\flight.h
+	<vector>
+	<string>
+	"Plane.h"
+	"Crew.h"
+

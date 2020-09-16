@@ -32,7 +32,14 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="database.txt" />
+		<Unit filename="include/Crew.h" />
+		<Unit filename="include/Flight.h" />
+		<Unit filename="include/Plane.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="src/Crew.cpp" />
+		<Unit filename="src/Flight.cpp" />
+		<Unit filename="src/Plane.cpp" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
 		</Extensions>

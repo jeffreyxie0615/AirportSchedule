@@ -1,6 +1,6 @@
-#include "Flight.h"
-#include "Plane.h"
-#include "Crew.h"
+#include "../include/Flight.h"
+#include "../include/Plane.h"
+#include "../include/Crew.h"
 
 #include <iostream>
 Flight::Flight(string numTail, vector<string> pilots, vector<string> cabinCrew, string startTime,
