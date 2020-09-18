@@ -220,7 +220,7 @@ int Flight::findPosition(vector<Flight*>& flights, string numTail, string startT
     return -1;
 }
 
-bool Plane::isAvailablePlane(vector<Plane*>& planes, string numTail, string startTime, string endTime)
+bool Plane::isAvailablePlane(vector<Plane*>& planes, string numTail, string startTime, string endTime, int index)
 {
     Plane* tempPlane = Plane::find(planes, numTail);
     vector<vector<string>> schedule = tempPlane->getSchedule();
@@ -228,8 +228,11 @@ bool Plane::isAvailablePlane(vector<Plane*>& planes, string numTail, string star
     long long int endInt = Plane::convertTime(endTime);
     for (unsigned int i = 0; i < schedule.size(); i++)
     {
+        if (i == index)
+        {
+            continue;
+        }
         long long int schedStart = Plane::convertTime(schedule[i][0]);
-
         long long int schedEnd = Plane::convertTime(schedule[i][1]);
         if ((startInt >= schedStart && startInt <= schedEnd) || (endInt >= schedStart && endInt <= schedEnd) || (startInt < schedStart && endInt > schedEnd))
         {
@@ -431,7 +434,7 @@ bool Flight::checkPreconditions(vector<Crew*>& crews, vector<Plane*>& planes, ve
             return false;
         }
     }
-    if (Plane::isAvailablePlane(planes, numTail, startTime, endTime) && Plane::isAvailableSeats(planes, numTail, numPassenger) && crewCount && pilotBool1 && crewBool1)
+    if (Plane::isAvailablePlane(planes, numTail, startTime, endTime, -1) && Plane::isAvailableSeats(planes, numTail, numPassenger) && crewCount && pilotBool1 && crewBool1)
     {
         cout<<"Passed All Tests"<<endl;
         return true;

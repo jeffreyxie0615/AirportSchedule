@@ -76,9 +76,9 @@ void Plane::add(vector<Plane*>& planes, std::string make,std::string model, std:
     Plane* temp = new Plane(make, model, numTail, numSeats, range, minCrew, schedule);
     planes.push_back(temp);
 }
-void Plane::edit(vector<Plane*> planes, string numTail, string model, string make, int numSeats, int range, int minCrew, string OGnumTail)
+void Plane::edit(vector<Plane*> planes, string numTail, string model, string make, int numSeats, int range, int minCrew)
 {
-    Plane* editPlane = find(planes, OGnumTail);
+    Plane* editPlane = find(planes, numTail);
     if (make != ""){
         editPlane->make = make;
     }

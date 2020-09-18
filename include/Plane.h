@@ -34,14 +34,14 @@ class Plane
         static void add(vector<Plane*>& planes, std::string make,std::string model, std::string numTail,
                         int numSeats, int range, int minCrew, vector<vector<string>> schedule);
         static void edit(vector<Plane*> planes, string make, string model, string numTail,
-                         int numSeats, int range, int minCrew, string OGnumTail);
+                         int numSeats, int range, int minCrew);
         static void deletePlane(vector<Plane*>& planes, std::string numTail);
         static Plane* find(std::vector<Plane*>& planes, std::string numTail);
         static int findPosition(std::vector<Plane*> planes, std::string numTail);
         static int printAll(std::vector<Plane*>& planes);
         static void printSpec(std::vector<Plane*>& planes, std::string numTail);
         static long long int convertTime(string time);
-        static bool isAvailablePlane(std::vector<Plane*>& planes, std::string numTail, std::string startTime, std::string endTime);
+        static bool isAvailablePlane(std::vector<Plane*>& planes, std::string numTail, std::string startTime, std::string endTime, int index);
         static bool isAvailableSeats(std::vector<Plane*>& planes, std::string numTail, int numPassenger);
         static bool ableToAddSchedule(vector<vector<string>>& currentSchedule, string startTime, string endTime);
 

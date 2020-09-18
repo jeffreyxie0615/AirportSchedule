@@ -132,7 +132,7 @@ void Crew::displayCrew(string filler)
 void Crew::displayAll()
 {
 
-    sleep(1);
+    sleep(0);
     cout<<"~~~~~~~~~~~~~~~~~~"<<endl;
     cout<<"The Name Of The Crew Member Is: ";
     cout<<name<<endl;
