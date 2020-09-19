@@ -37,9 +37,10 @@ class Flight
         void setNumPassengers(int numPassenger);
         void setNumPilots(int numPilot);
         void setNumCabinCrew(int numCabinCrew);
+        void display();
 
-        static Flight* findFlight(vector<Flight*>& flights, string numTail, string startAirport, string endAirport);
-        static int findPosition(vector<Flight*>& flights, string numTail, string startAirport, string endAirport);
+        static Flight* findFlight(vector<Flight*>& flights, string numTail, string startTime);
+        static int findPosition(vector<Flight*>& flights, string numTail, string startTime, string endAirport);
         static void add(vector<Flight*>& flights, vector<Crew*>& crews, vector<Plane*>& planes, string numTail, vector<string> pilots, vector<string> cabinCrew, string startTime,
                         string endTime, string startAirport, string endAirport, string status, int numPassenger, int numPilots, int numCabinCrew);
         static void edit(vector<Flight*>& flights, vector<Crew*>& crews, vector<Plane*>& planes, string numTail, vector<string> pilots, vector<string> cabinCrew, string startTime,

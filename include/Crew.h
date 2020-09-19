@@ -22,7 +22,8 @@ class Crew
         void setType(string type);
         void setSchedule(vector<vector<string>> schedule);
         void setPlaneSchedule(vector<string> planeSchedule);
-
+        void deleteAssignment(string startTime);
+        void addAssignment(string startTIme, string endTime);
         bool isPilot();
         void displayCrew(string filler);
         void displayAll();
@@ -33,7 +34,7 @@ class Crew
         static void edit(vector<Crew*>& crews, string name, string id, string type, vector<vector<string>> schedule);
         static void deleteCrew(vector<Crew*>& crews, string id);
         static Crew* findCrew(vector<Crew*>& crews, string OGid);
-        static int findCrewPosition(vector<Crew*>& crews, string OGid);
+        static int findCrewPosition(vector<Crew*>& crews, string id);
         static void printAll();
         static void printSpec();
 

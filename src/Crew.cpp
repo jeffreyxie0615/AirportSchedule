@@ -47,6 +47,25 @@ void Crew::setType(string type)
 {
     this->type = type;
 }
+void Crew::deleteAssignment(string startTime)
+{
+    int index = 0;
+    for (int i = 0; i < schedule.size(); i++)
+    {
+        if (schedule[i][0] == startTime)
+        {
+            index = i;
+            break;
+        }
+    }
+    schedule.erase(schedule.begin() + index);
+    this->setSchedule(schedule);
+}
+void Crew::addAssignment(string startTime, string endTime)
+{
+    schedule.push_back({startTime, endTime});
+    this->setSchedule(schedule);
+}
 void Crew::setSchedule(vector<vector<string>> schedule)
 {
     this->schedule = schedule;
@@ -100,11 +119,11 @@ Crew* Crew::findCrew(vector<Crew*>& crews, string OGid)
     }
     return NULL;
 }
-int Crew::findCrewPosition(vector<Crew*>& crews, string OGid)
+int Crew::findCrewPosition(vector<Crew*>& crews, string id)
 {
     for (unsigned int i = 0; i < crews.size(); i++)
     {
-        if (crews[i]->id == OGid)
+        if (crews[i]->id == id)
         {
             return i;
         }

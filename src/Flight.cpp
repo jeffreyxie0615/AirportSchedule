@@ -55,7 +55,7 @@ string Flight::getStartTime()
 }
 string Flight::getEndTime()
 {
-    return endAirport;
+    return endTime;
 }
 string Flight::getStartAirport()
 {
@@ -147,7 +147,7 @@ void Flight::edit(vector<Flight*>& flights, vector<Crew*>& crews, vector<Plane*>
         cout<<"Cannot Edit Flight"<<endl;
         return;
     }
-    Flight* editFlight = findFlight(flights, numTail, startAirport, endAirport);
+    Flight* editFlight = findFlight(flights, numTail, startTime);
     if (numTail != "")
     {
         editFlight->setNumTail(numTail);
@@ -197,11 +197,11 @@ void Flight::deleteFlight(vector<Flight*>& flights, string numTail, string start
     flights.erase(flights.begin() + index);
     cout<<"Flight Successfully Deleted"<<endl;
 }
-Flight* Flight::findFlight(vector<Flight*>& flights, string numTail, string startAirport, string endAirport)
+Flight* Flight::findFlight(vector<Flight*>& flights, string numTail, string startTime)
 {
     for (auto itr = flights.begin(); itr != flights.end(); itr++)
     {
-        if (((*itr)->getNumTail() == numTail)  && ((*itr)->getStartAirport() == startAirport) && ((*itr)->getEndAirport() == endAirport))
+        if (((*itr)->getNumTail() == numTail)  && ((*itr)->getStartTime() == startTime))
         {
             return *itr;
         }
@@ -394,6 +394,35 @@ bool Flight::cabinCheck(int numCabinCrew, bool overEight)
     return numCabinCrew >= minCabinCrew;
 }
 
+void Flight::display()
+{
+    string pilotDisplay;
+    string cabinDisplay;
+    cout<<"~~~~~~~~~~~~~~~~~~"<<endl;
+    cout<<"The Tail Number Of The Plane Is: " + numTail<<endl;
+    cout<<"The Pilots For This Flight Are: "<<endl;
+    for (int i = 0; i < pilots.size(); i++)
+    {
+        pilotDisplay += (pilots[i] + ", ");
+    }
+    cout<<pilotDisplay.substr(0,pilotDisplay.size() - 2)<<endl;
+    cout<<"The Cabin Crew Members For This Flight Are: "<<endl;
+    for (int i = 0; i < cabinCrew.size(); i++)
+    {
+        cabinDisplay += (cabinCrew[i] + ", ");
+    }
+    cout<<cabinDisplay.substr(0,cabinDisplay.size() - 2)<<endl;
+    cout<<"The Start Time Of The Flight Is: "<<endl;
+    cout<<startTime<<endl;
+    cout<<"The End Time Of The Flight Is: "<<endl;
+    cout<<endTime<<endl;
+    cout<<"The Flight Starts At: " + startAirport<<endl;
+    cout<<"The Flight Ends At: " + endAirport<<endl;
+    cout<<"The Status Of The Flight Is: " + status<<endl;
+    cout<<"The Maximum Number Of Passengers On The Flight Is: " + to_string(numPassenger)<<endl;
+    cout<<"The Number Of Pilots For This Flight Is: " + to_string(numPilots)<<endl;
+    cout<<"The Minimum Number Of Cabin Crew Members For This Flight Is: " + to_string(numCabinCrew)<<endl;
+}
 bool Flight::checkPreconditions(vector<Crew*>& crews, vector<Plane*>& planes, vector<string>& pilots, vector<string>& cabinCrew, string numTail, string startTime, string endTime, int numPassenger, int numPilots, int numCabinCrew)
 {
     if (!timeCheck(startTime, endTime))

@@ -231,7 +231,11 @@ istream& operator >> (istream& in, Plane* obj){
                 cout<<"The Input Is Not Formatted Properly. Try Again!"<<endl;
                 continue;
             }
-
+            if (!Flight::validTime(temp))
+            {
+                cout<<"Restarting Submission..."<<endl;
+                continue;
+            }
             break;
         }
         return temp;
@@ -320,7 +324,7 @@ string enterNoSpace()
         }
         if (temp == "Exit")
         {
-            return "Exit";
+            return "Failed";
         }
 
 
@@ -333,6 +337,14 @@ string enterNoSpace()
     }
     cout<<"here"<<endl;
     return temp;
+}
+void printExit()
+{
+    cout<<"Successfully Exited Entry"<<endl;
+    cout<<"---------------------------------------------------"<<endl;
+    cout<<"MAKE SURE YOU SEPARATE WORDS WITH HYPHENS, NOT SPACES"<<endl;
+    cout<<"~~What Do You Want To Do Next?"<<endl;
+    cout<<"~~Press '1' For A List Of Commands"<<endl;
 }
 int main()
 {
@@ -443,7 +455,7 @@ int main()
                 cout<<"~~Please Enter A Name For The Crew Member: "<<endl;
                 // Enter In Crew Name
                 name = enterNoSpace();
-                if (name == "Exit")
+                if (name == "Failed")
                 {
                     cout<<"Successfully Exited Entry"<<endl;
                     cout<<"---------------------------------------------------"<<endl;
@@ -614,7 +626,7 @@ int main()
                 }
                 cout<<"~~Please Enter In A Model For The Plane: "<<endl;
                 model = enterNoSpace();
-                if (model == "Exit")
+                if (model == "Failed")
                 {
                     cout<<"Successfully Exited Entry"<<endl;
                     cout<<"---------------------------------------------------"<<endl;
@@ -719,19 +731,11 @@ int main()
                         loopExit = true;
                         break;
                     }
-                    if (!Flight::validTime(startTime))
-                    {
-                        continue;
-                    }
                     endTime = enterSchedule(false);
                     if (endTime == "Failed")
                     {
                         loopExit = true;
                         break;
-                    }
-                    if (!Flight::validTime(endTime))
-                    {
-                        continue;
                     }
                     if (!Flight::timeCheck(startTime,endTime))
                     {
@@ -801,7 +805,7 @@ int main()
                     cout<<"If You Want To See A List Of All Planes, Please Enter 'Show'. Otherwise, Just Enter In The Tail Number:"<<endl;
                     string display;
                     display = enterNoSpace();
-                    if (display == "Exit")
+                    if (display == "Failed")
                     {
                         cout<<"---------------------------------------------------"<<endl;
                         cout<<"MAKE SURE YOU SEPARATE WORDS WITH HYPHENS, NOT SPACES"<<endl;
@@ -885,10 +889,6 @@ int main()
                         cout<<"~~Press '1' For A List Of Commands"<<endl;
                         break;
                     }
-                    if (!Flight::validTime(startTime))
-                    {
-                        continue;
-                    }
                     endTime = enterSchedule(false);
                     if (endTime == "Failed")
                     {
@@ -899,10 +899,6 @@ int main()
                         cout<<"~~What Do You Want To Do Next?"<<endl;
                         cout<<"~~Press '1' For A List Of Commands"<<endl;
                         break;
-                    }
-                    if (!Flight::validTime(endTime))
-                    {
-                        continue;
                     }
                     if (!Flight::timeCheck(startTime,endTime))
                     {
@@ -937,7 +933,7 @@ int main()
                 cout<<"If You Want To See A List Of All Available Pilots, Please Enter 'Show':"<<endl;
                 string display;
                 display = enterNoSpace();
-                if (display == "Exit")
+                if (display == "Failed")
                 {
                     cout<<"---------------------------------------------------"<<endl;
                     cout<<"MAKE SURE YOU SEPARATE WORDS WITH HYPHENS, NOT SPACES"<<endl;
@@ -1016,7 +1012,7 @@ int main()
                 cout<<"If You Want To See A List Of All Available Cabin Crew Members, Please Enter 'Show':"<<endl;
 
                 display = enterNoSpace();
-                if (display == "Exit")
+                if (display == "Failed")
                 {
                     cout<<"---------------------------------------------------"<<endl;
                     cout<<"MAKE SURE YOU SEPARATE WORDS WITH HYPHENS, NOT SPACES"<<endl;
@@ -1272,7 +1268,7 @@ int main()
                 cout<<"~~~~~~~~~~~~~~~~~~"<<endl;
                 cout<<"~~Edit The Name:"<<endl;
                 name = enterNoSpace();
-                if (name == "Exit")
+                if (name == "Failed")
                 {
                     cout<<"Successfully Exited Edit"<<endl;
                     cout<<"---------------------------------------------------"<<endl;
@@ -1328,14 +1324,10 @@ int main()
                 while (true)
                 {
                     type = enterNoSpace();
-                    if (type == "Exit")
+                    if (type == "Failed")
                     {
                         loopExit = true;
-                        cout<<"Successfully Exited Edit"<<endl;
-                        cout<<"---------------------------------------------------"<<endl;
-                        cout<<"MAKE SURE YOU SEPARATE WORDS WITH HYPHENS, NOT SPACES"<<endl;
-                        cout<<"~~What Do You Want To Do Next?"<<endl;
-                        cout<<"~~Press '1' For A List Of Commands"<<endl;
+                        printExit();
                         break;
                     }
                     if (type == ".")
@@ -1380,11 +1372,6 @@ int main()
                             cout<<"No Edit Was Made\n"<<endl;
                             startTime = schedule[i][0];
                         }
-                        if (!Flight::validTime(startTime))
-                        {
-                            cout<<"There Was An Input With The Start Time. Try Again!"<<endl;
-                            continue;
-                        }
                         endTime = enterSchedule(false);
                         if (endTime == "Failed")
                         {
@@ -1401,11 +1388,6 @@ int main()
                             cout<<"No Edit Was Made\n"<<endl;
                             endTime = schedule[i][1];
                             break;
-                        }
-                        if (!Flight::validTime(endTime))
-                        {
-                            cout<<"There Was An Error With The Input. Starting Entry From The Beginning..."<<endl;
-                            continue;
                         }
                         if (!Flight::timeCheck(startTime,endTime))
                         {
@@ -1450,19 +1432,11 @@ int main()
                         loopExit = true;
                         break;
                     }
-                    if (!Flight::validTime(startTime))
-                    {
-                        continue;
-                    }
                     endTime = enterSchedule(false);
                     if (endTime == "Failed")
                     {
                         loopExit = true;
                         break;
-                    }
-                    if (!Flight::validTime(endTime))
-                    {
-                        continue;
                     }
                     if (!Flight::timeCheck(startTime,endTime))
                     {
@@ -1516,7 +1490,7 @@ int main()
                 cout<<"---------------------------------------------------"<<endl;
                 cout<<"MAKE SURE YOU SEPARATE WORDS WITH HYPHENS, NOT SPACES"<<endl;
                 cout<<"Enter In 'Exit' At Any Time To Exit The Entry"<<endl;
-                cout<<"Editing Plane Member...\n"<<endl;
+                cout<<"Editing Plane...\n"<<endl;
                 cout<<"Here Is A List Of All Planes: \n"<<endl;
                 for (Plane* plane : planes)
                 {
@@ -1573,7 +1547,7 @@ int main()
                     loopExit = false;
                     break;
                 }
-                cout<<"here"<<endl;
+
                 cout<<"~~Confirm Selection For Plane: " + numTail + "? ('Yes' Or 'No')"<<endl;
                 editorPlane = Plane::find(planes, numTail);
                 cin>>temp;
@@ -1593,13 +1567,9 @@ int main()
                 cout<<"~~~~~~~~~~~~~~~~~~"<<endl;
                 cout<<"~~Edit The Make:"<<endl;
                 make = enterNoSpace();
-                if (make == "Exit")
+                if (make == "Failed")
                 {
-                    cout<<"Successfully Exited Edit"<<endl;
-                    cout<<"---------------------------------------------------"<<endl;
-                    cout<<"MAKE SURE YOU SEPARATE WORDS WITH HYPHENS, NOT SPACES"<<endl;
-                    cout<<"~~What Do You Want To Do Next?"<<endl;
-                    cout<<"~~Press '1' For A List Of Commands"<<endl;
+                    printExit();
                     break;
                 }
                 if (make == ".")
@@ -1613,13 +1583,9 @@ int main()
                 // edit model
                 cout<<"~~Edit The Model:"<<endl;
                 model = enterNoSpace();
-                if (model == "Exit")
+                if (model == "Failed")
                 {
-                    cout<<"Successfully Exited Edit"<<endl;
-                    cout<<"---------------------------------------------------"<<endl;
-                    cout<<"MAKE SURE YOU SEPARATE WORDS WITH HYPHENS, NOT SPACES"<<endl;
-                    cout<<"~~What Do You Want To Do Next?"<<endl;
-                    cout<<"~~Press '1' For A List Of Commands"<<endl;
+                    printExit();
                     break;
                 }
                 if (model == ".")
@@ -1780,11 +1746,6 @@ int main()
                             cout<<"No Edit Was Made\n"<<endl;
                             startTime = schedule[i][0];
                         }
-                        if (!Flight::validTime(startTime))
-                        {
-                            cout<<"There Was An Input With The Start Time. Try Again!"<<endl;
-                            continue;
-                        }
                         endTime = enterSchedule(false);
 
                         if (endTime == "Failed")
@@ -1802,11 +1763,6 @@ int main()
                             cout<<"No Edit Was Made\n"<<endl;
                             endTime = schedule[i][1];
                             break;
-                        }
-                        if (!Flight::validTime(endTime))
-                        {
-                            cout<<"There Was An Error With The Input. Starting Entry From The Beginning..."<<endl;
-                            continue;
                         }
                         if (!Flight::timeCheck(startTime,endTime))
                         {
@@ -1854,19 +1810,11 @@ int main()
                         loopExit = true;
                         break;
                     }
-                    if (!Flight::validTime(startTime))
-                    {
-                        continue;
-                    }
                     endTime = enterSchedule(false);
                     if (endTime == "Failed")
                     {
                         loopExit = true;
                         break;
-                    }
-                    if (!Flight::validTime(endTime))
-                    {
-                        continue;
                     }
                     if (!Flight::timeCheck(startTime,endTime))
                     {
@@ -1884,11 +1832,7 @@ int main()
                 if (loopExit)
                 {
                     loopExit = false;
-                    cout<<"Successfully Exited Entry"<<endl;
-                    cout<<"---------------------------------------------------"<<endl;
-                    cout<<"MAKE SURE YOU SEPARATE WORDS WITH HYPHENS, NOT SPACES"<<endl;
-                    cout<<"~~What Do You Want To Do Next?"<<endl;
-                    cout<<"~~Press '1' For A List Of Commands"<<endl;
+                    printExit();
                     break;
                 }
                 editorPlane->setSchedule(schedule);
@@ -1901,7 +1845,520 @@ int main()
             }
             break;
 
+            case (7):
+            {
+                Flight* editorFlight;
+                string numTail;
+                string startTime;
+                string endTime;
+                string temp;
+                string pilotsString;
+                string cabinsString;
+                string pilotID;
+                string cabinID;
+                vector<Crew*> pilots;
+                vector<Crew*> cabins;
+                int minPilot = 4;
+                int minCabinCrew;
+                bool init = true;
+                bool conflict = false;
+                bool add = false;
+                string x;
+                string msg;
+                cout<<"---------------------------------------------------"<<endl;
+                cout<<"MAKE SURE YOU SEPARATE WORDS WITH HYPHENS, NOT SPACES"<<endl;
+                cout<<"Enter In 'Exit' At Any Time To Exit The Entry"<<endl;
+                cout<<"Editing Flight...\n"<<endl;
+                cout<<"Here Is A List Of All Flights: \n"<<endl;
+                for (Flight* flight : flights)
+                {
+                    flight->display();
+                }
+                cout<<"~~~~~~~~~~~~~~~~~~\n"<<endl;
+                while (true)
+                {
+                    bool validTail = true;
+                    cout<<"~~Please Enter In The 6 Character Tail Number For The Plane: (Format: X000XX) Where X Is A Letter And 0 Is A Digit"<<endl;
+                    cin>>numTail;
+                    if (numTail == "Exit")
+                    {
+                        loopExit = true;
+                        printExit();
+                        break;
+                    }
+                    for (int i = 0; i < 6; i++)
+                    {
+                        if (i == 1 || i == 2 || i == 3)
+                        {
+                            if (!isdigit(numTail[i]))
+                            {
+                                validTail = false;
+                                break;
+                            }
+                        }else
+                        {
+                            if (!isupper(numTail[i]))
+                            {
+                                validTail = false;
+                                break;
+                            }
+                        }
+                    }
+                    if (!validTail || numTail.size() != 6)
+                    {
+                        cout<<"There Was An Error With The Provided Tail Number"<<endl;
+                        validTail = true;
+                        continue;
+                    }
+                    if (Plane::find(planes, numTail) == NULL)
+                    {
+                        cout<<"We Could Not Find A Plane With That Tail Number. Try Entering In A Different Tail Number!"<<endl;
+                        continue;
+                    }
 
+                    startTime = enterSchedule(true);
+                    if (startTime == "Failed")
+                    {
+                        loopExit = true;
+                        printExit();
+                        break;
+                    }
+                    cout<<startTime<<endl;
+                    editorFlight = Flight::findFlight(flights, numTail, startTime);
+                    if (editorFlight == NULL)
+                    {
+                        cout<<"We Could Not Find A Flight With That Set Of Tail Number And Start Time. Starting Entry From The Beginning..."<<endl;
+                        continue;
+                    }
+                    break;
+                }
+                if (loopExit)
+                {
+                    loopExit = false;
+                    break;
+                }
+                cout<<"~~Confirm Selection For Flight With Plane " + numTail + " And Start Date: " + startTime + "? ('Yes' Or 'No')"<<endl;
+                cin>>temp;
+                if (temp != "Yes")
+                {
+                    printExit();
+                    break;
+                }
+
+
+                cout<<"Here Is The Data For: " + editorFlight->getNumTail() + " Starting At " + editorFlight->getStartAirport()<<endl;
+                editorFlight->display();
+                cout<<"\n---------------------------------------------------"<<endl;
+                cout<<"For Each Edit, Type A Period '.' If You Don't Want To Make Any Changes"<<endl;
+                cout<<"~~~~~~~~~~~~~~~~~~"<<endl;
+                // edit numTail
+                while (true)
+                {
+                    bool validTail = true;
+                    cout<<"~~Edit The Tail Number. Please Enter In The 6 Character Tail Number For The Plane: (Format: X000XX) Where X Is A Letter And 0 Is A Digit"<<endl;
+                    cin>>numTail;
+                    if (numTail == "Exit")
+                    {
+                        loopExit = true;
+                        printExit();
+                        break;
+                    }
+                    if (numTail == ".")
+                    {
+                        cout<<"No Edit Was Made\n"<<endl;
+                        numTail = editorFlight->getNumTail();
+                        break;
+                    }
+                    for (int i = 0; i < 6; i++)
+                    {
+                        if (i == 1 || i == 2 || i == 3)
+                        {
+                            if (!isdigit(numTail[i]))
+                            {
+                                validTail = false;
+                                break;
+                            }
+                        }else
+                        {
+                            if (!isupper(numTail[i]))
+                            {
+                                validTail = false;
+                                break;
+                            }
+                        }
+                    }
+                    if (!validTail || numTail.size() != 6)
+                    {
+                        cout<<"There Was An Error With The Provided Tail Number"<<endl;
+                        validTail = true;
+                        continue;
+                    }
+                    if (Plane::find(planes, numTail) != NULL)
+                    {
+                        cout<<"There Already Is A Plane With That Tail Number. Try Entering In A Different Tail Number!"<<endl;
+                        continue;
+                    }
+                    cout<<"Changed Tail Number To: " + numTail<<endl;
+                    editorFlight->setNumTail(numTail);
+                    break;
+                }
+                if (loopExit)
+                {
+                    loopExit = false;
+                    break;
+                }
+                while (true)
+                {
+                    cout<<"~~Edit The Departure Time"<<endl;
+                    startTime = enterSchedule(true);
+                    if (startTime == "Failed")
+                    {
+                        loopExit = true;
+                        printExit();
+                        break;
+                    }
+                    if (startTime == ".")
+                    {
+                        startTime = editorFlight->getStartTime();
+                    }
+                    cout<<"~~Edit The Arrival Time"<<endl;
+                    endTime = enterSchedule(false);
+                    if (endTime == "Failed")
+                    {
+                        loopExit = true;
+                        printExit();
+                        break;
+                    }
+                    if (endTime == ".")
+                    {
+                        endTime = editorFlight->getEndTime();
+                    }
+
+                    if (!Flight::timeCheck(startTime, endTime))
+                    {
+                        cout<<"The Arrival Time Must Come After The Departure Time"<<endl;
+                        continue;
+                    }
+
+                    if (!Plane::isAvailablePlane(planes, numTail, startTime, endTime, -1))
+                    {
+                        cout<<"The Plane Is Not Available In This Time Interval. Try Again!\n"<<endl;
+                        continue;
+                    }
+                    pilotsString = editorFlight->getPilots();
+                    cabinsString = editorFlight->getCabinCrew();
+                    stringstream ss (pilotsString);
+                    stringstream ss2 (cabinsString);
+                    while (getline(ss,x,'|'))
+                    {
+                        pilots.push_back(Crew::findCrew(crews, x));
+                        if (!Crew::isAvailableCrew(crews, x, startTime, endTime, -1))
+                        {
+                            if (init)
+                            {
+                                init = !init;
+                                cout<<"These Pilots Have A Time Conflict With The Scheduled Flight: "<<endl;
+                            }
+                            msg += (x + ", ");
+                            conflict = true;
+                        }
+                    }
+                    if (msg.size() > 2)
+                    {
+                        msg.pop_back();
+                        msg.pop_back();
+                    }
+                    cout<<msg + "\n"<<endl;
+                    msg = "";
+                    init = true;
+                    while (getline(ss2,x,'|'))
+                    {
+                        cabins.push_back(Crew::findCrew(crews, x));
+                        if (!Crew::isAvailableCrew(crews, x, startTime, endTime, -1))
+                        {
+                            if (init)
+                            {
+                                init = !init;
+                                cout<<"These Cabin Crew Members Have A Time Conflict With The Scheduled Flight: "<<endl;
+                            }
+                            msg += (x + ", ");
+                            conflict = true;
+                        }
+                    }
+                    if (msg.size() > 2)
+                    {
+                        msg.pop_back();
+                        msg.pop_back();
+                    }
+                    cout<<msg + "\n"<<endl;
+                    if (conflict)
+                    {
+                        cout<<"WARNING!!! YOU ARE ABOUT TO CHANGE THE SCHEDULE TO A TIME IN WHICH AT LEAST 1 CREW MEMBER HAS A CONFLICT WITH\nYOU WILL HAVE THE OPTION TO ALTER THE LIST OF CREW MEMBERS FOR THE FLIGHT\nARE YOU SURE YOU WANT TO PROCEED? (Enter 'Confirm' To Proceed, 'No' To Re-Enter A Schedule, Or 'Exit' To Quit)"<<endl;
+                        temp = enterNoSpace();
+                        if (temp == "Failed")
+                        {
+                            loopExit = true;
+                            printExit();
+                            break;
+                        }
+                        if (temp == "Confirm")
+                        {
+                            cout<<"Set Flight To Leave At " + startTime + " And Arrive At " + endTime<<endl;
+                            break;
+                        }else
+                        {
+                            continue;
+                        }
+                    }
+                    break;
+                }
+                if (loopExit)
+                {
+                    loopExit = false;
+                    break;
+                }
+                if (Flight::overEight(startTime, endTime))
+                {
+                    minPilot *= 2;
+                    minCabinCrew *= 2;
+                }
+
+
+                // edit pilots
+                cout<<"Do You Want To Remove Any Pilots From The Flight? ('Yes' Or 'No')"<<endl;
+                cout<<"Keep In Mind The Flight Needs At Least " + to_string(minPilot) + " Pilots"<<endl;
+                temp = enterNoSpace();
+                if (temp == "Failed")
+                {
+                    printExit();
+                    break;
+                }
+                if (temp == "Yes")
+                {
+                    int counter = 0;
+                    while (true)
+                    {
+                        cout<<"Enter The ID Of Each Pilot To Delete Them From The Flight"<<endl;
+                        cout<<"Enter In 'Done' When Finished"<<endl;
+                        pilotID = enterAllNum(6);
+                        if (pilotID == "Failed")
+                        {
+                            loopExit = true;
+                            printExit();
+                            break;
+                        }
+                        if (pilotID == "Done")
+                        {
+                            cout<<"Removed " + to_string(counter) + " Pilots From The Flight\n"<<endl;
+                            break;
+                        }
+                        Crew* deleteCrew = Crew::findCrew(crews, pilotID);
+                        if (deleteCrew == NULL)
+                        {
+                            cout<<"Could Not Find Crew Member With That ID. Try Again!"<<endl;
+                            continue;
+                        }
+                        deleteCrew->deleteAssignment(startTime);
+                        cout<<"Removed " + pilotID + " From The Flight\n"<<endl;
+                        counter++;
+                    }
+                    if (loopExit)
+                    {
+                        loopExit = false;
+                        break;
+                    }
+                }
+                int counter = pilots.size();
+                if (minPilot - counter > 0)
+                {
+                    cout<<"You Need To Add At Least " <<minPilot - counter<<" Pilots To The Flight For It To Be Valid"<<endl;
+                    cout<<"Enter In 'Done' When Finished"<<endl;
+                    add = true;
+                }else
+                {
+                    cout<<"Do You Want To Add Pilots To The Flight? ('Yes' Or 'No')"<<endl;
+                    temp = enterNoSpace();
+                    if (temp == "Failed")
+                    {
+                        printExit();
+                        break;
+                    }
+                    if (temp == "Yes")
+                    {
+                        add = true;
+                    }
+                }
+                if (add)
+                {
+                    while (true)
+                    {
+                        cout<<"~~Please Enter In The ID Of The Pilot You Wish To Add To The Flight (xxxxxx) Where x Is A Digit"<<endl;
+                        pilotID = enterAllNum(6);
+                        if (pilotID == "Failed")
+                        {
+                            loopExit = true;
+                            printExit();
+                            break;
+                        }
+                        if (pilotID == "Done")
+                        {
+                            if (counter < minPilot)
+                            {
+                                cout<<"There Are Not Enough Pilots Scheduled For The Flight. There Needs To Be At Least " + to_string(minPilot) + "Pilots"<<endl;
+                                continue;
+                            }else
+                            {
+                                cout<<"Finished Adding Pilots To Flight"<<endl;
+                                break;
+                            }
+                        }
+                        Crew* addCrew = Crew::findCrew(crews, pilotID);
+                        if (addCrew == NULL)
+                        {
+                            cout<<"Could Not Find A Pilot With That ID. Try Again!"<<endl;
+                            continue;
+                        }
+                        if (find(pilots.begin(), pilots.end(), addCrew) != pilots.end())
+                        {
+                            cout<<"That Pilot Is Already Scheduled For This Flight. Try Again!"<<endl;
+                            continue;
+                        }
+                        if (addCrew->isPilot() && addCrew->availableCrewPointer(startTime, endTime))
+                        {
+                            pilots.push_back(addCrew);
+                            addCrew->addAssignment(startTime, endTime);
+                            counter++;
+                        }else
+                        {
+                            cout<<"That Crew Member Either Is Not A Pilot Or Is Not Available In This Time Slot. Try Again!"<<endl;
+                            continue;
+                        }
+                    }
+                }
+                if (loopExit)
+                {
+                    loopExit = false;
+                    break;
+                }
+
+                // edit cabin crew
+                add = false;
+                cout<<"Do You Want To Remove Any Cabin Crew Members From The Flight? ('Yes' Or 'No')"<<endl;
+                cout<<"Keep In Mind The Flight Needs At Least " + to_string(minCabinCrew) + " Cabin Crew Members"<<endl;
+                temp = enterNoSpace();
+                if (temp == "Failed")
+                {
+                    printExit();
+                    break;
+                }
+                if (temp == "Yes")
+                {
+                    int counter = 0;
+                    while (true)
+                    {
+                        cout<<"Enter The ID Of Each Cabin Crew Member To Delete Them From The Flight"<<endl;
+                        cout<<"Enter In 'Done' When Finished"<<endl;
+                        cabinID = enterAllNum(6);
+                        if (cabinID == "Failed")
+                        {
+                            loopExit = true;
+                            printExit();
+                            break;
+                        }
+                        if (cabinID == "Done")
+                        {
+                            cout<<"Removed " + to_string(counter) + " Cabin Crew Members From The Flight\n"<<endl;
+                            break;
+                        }
+                        Crew* deleteCrew = Crew::findCrew(crews, cabinID);
+                        if (deleteCrew == NULL)
+                        {
+                            cout<<"Could Not Find Crew Member With That ID. Try Again!"<<endl;
+                            continue;
+                        }
+                        deleteCrew->deleteAssignment(startTime);
+                        cout<<"Removed " + cabinID + " From The Flight\n"<<endl;
+                        counter++;
+                    }
+                    if (loopExit)
+                    {
+                        loopExit = false;
+                        break;
+                    }
+                }
+                counter = cabins.size();
+                if (minCabinCrew - counter > 0)
+                {
+                    cout<<"You Need To Add At Least " <<minCabinCrew - counter<<" Cabin Crew Members To The Flight For It To Be Valid"<<endl;
+                    cout<<"Enter In 'Done' When Finished"<<endl;
+                    add = true;
+                }else
+                {
+                    cout<<"Do You Want To Add Cabin Crew Members To The Flight? ('Yes' Or 'No')"<<endl;
+                    temp = enterNoSpace();
+                    if (temp == "Failed")
+                    {
+                        printExit();
+                        break;
+                    }
+                    if (temp == "Yes")
+                    {
+                        add = true;
+                    }
+                }
+                if (add)
+                {
+                    while (true)
+                    {
+                        cout<<"~~Please Enter In The ID Of The Cabin Crew Member You Wish To Add To The Flight (xxxxxx) Where x Is A Digit"<<endl;
+                        cabinID = enterAllNum(6);
+                        if (cabinID == "Failed")
+                        {
+                            loopExit = true;
+                            printExit();
+                            break;
+                        }
+                        if (cabinID == "Done")
+                        {
+                            if (counter < minCabinCrew)
+                            {
+                                cout<<"There Are Not Enough Cabin Crew Members Scheduled For The Flight. There Needs To Be At Least " + to_string(minCabinCrew) + " Cabin Crew Members"<<endl;
+                                continue;
+                            }else
+                            {
+                                cout<<"Finished Adding Cabin Crew Members To Flight"<<endl;
+                                break;
+                            }
+                        }
+                        Crew* addCrew = Crew::findCrew(crews, cabinID);
+                        if (addCrew == NULL)
+                        {
+                            cout<<"Could Not Find A Cabin Crew Member With That ID. Try Again!"<<endl;
+                            continue;
+                        }
+                        if (find(cabins.begin(),cabins.end(), addCrew) != cabins.end())
+                        {
+                            cout<<"That Cabin Crew Member Is Already Scheduled For This Flight. Try Again!"<<endl;
+                            continue;
+                        }
+                        if (!addCrew->isPilot() && addCrew->availableCrewPointer(startTime, endTime))
+                        {
+                            cabins.push_back(addCrew);
+                            addCrew->addAssignment(startTime, endTime);
+                            counter++;
+                        }else
+                        {
+                            cout<<"That Crew Member Either Is Not A Cabin Crew Member Or Is Not Available In The Time Slot. Try Again!"<<endl;
+                            continue;
+                        }
+                    }
+                }
+                if (loopExit)
+                {
+                    loopExit = false;
+                    break;
+                }
+            }
 
             break;
         }// End Of Switch Statement
