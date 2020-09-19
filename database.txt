@@ -1,5 +1,28 @@
+getName 3
+getMatches 2
+getBaseDecade 2
+getRankSize 2
+getBestDecade 2
+getNumTopRank 2
+getDecadeRank 2
+topEveryDecade  3
+topOneDecade 3
+morePopular 2
+lessPopular 2
+toString 2
+isJumpy
+
+getName 2
+rankedEveryDecade
+rankedonlyonedecade
+alwaysMorePopular
+alwaysLessPopular
+hugeJump
+
+PLANEMEMBER
+Make sure to change schedule for all crewmembers and planes
 D000DD,sdd,dsfs,200,1000,3,2020/20/20/20/202020/20/20/20/20
-P123PP,172N,Pilatus,300,3000,2,2020/12/09/21/022020/12/09/23/09
+P123PP,172N,Pilatus,300,3000,2
 Q123QQ,Twin,,0,0,0
 Otters,Cessna,500,5000,20,0
 Q000QQ,24N,Pilatus,5,60000,5,2020/17/09/12/002020/17/09/14/00
@@ -25,5 +48,5 @@ Jessie,567890,Cabin,2020/14/09/20/522020/14/09/22/52
 Maren,999999,Pilot,2020/18/09/11/052020/18/09/11/10
 Tyrone,777777,Cabin,2020/12/09/20/032020/12/09/23/59
 ~,~,~,0000/00/00/00/000000/00/00/00/00,~
-P123PP,123456|987654|000000|123098,111111|111112|111113,2020/12/09/21/02,2020/12/09/23/09,LAX,LAX,Complete,0,4,2
+D000DD,123456|987654|000000|123098,111111|111112|111113,2020/12/09/21/02,2020/12/09/23/09,DAL,LAX,Active,0,4,3
 ~,~,~,0000/00/00/00/000000/00/00/00/00,~,~,~,~,0,0,0

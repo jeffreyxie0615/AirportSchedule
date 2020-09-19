@@ -441,6 +441,8 @@ int main()
                 cout<<"~~Press '3' To Add A New Plane"<<endl;
                 cout<<"~~Press '4' To Add A New Flight"<<endl;
                 cout<<"~~Press '5' To Edit An Existing Crew Member"<<endl;
+                cout<<"~~Press '6' To Edit An Existing Plane"<<endl;
+                cout<<"~~Press '7' To Edit An Existing Flight"<<endl;
             }
             break;
             // Add New Crew Member
@@ -1999,6 +2001,9 @@ int main()
                 if (numCabin != ".")
                 {
                     editorFlight->setNumCabinCrew(stoi(numCabin));
+                }else
+                {
+                    numCabin = editorFlight->getCabinCrew();
                 }
                 while (true)
                 {
@@ -2145,13 +2150,15 @@ int main()
                             cout<<"Removed " + to_string(counter) + " Pilots From The Flight\n"<<endl;
                             break;
                         }
-                        Crew* deleteCrew = Crew::findCrew(crews, pilotID);
+                        Crew* deleteCrew = Crew::findCrew(pilots, pilotID);
                         if (deleteCrew == NULL)
                         {
-                            cout<<"Could Not Find Crew Member With That ID. Try Again!"<<endl;
+                            cout<<"Could Not Find Pilot With That ID. Try Again!"<<endl;
                             continue;
                         }
                         deleteCrew->deleteAssignment(startTime);
+                        int index = Crew::findCrewPosition(pilots, pilotID);
+                        pilots.erase(pilots.begin() + index);
                         cout<<"Removed " + pilotID + " From The Flight\n"<<endl;
                         counter++;
                     }
@@ -2263,13 +2270,16 @@ int main()
                             cout<<"Removed " + to_string(counter) + " Cabin Crew Members From The Flight\n"<<endl;
                             break;
                         }
-                        Crew* deleteCrew = Crew::findCrew(crews, cabinID);
+
+                        Crew* deleteCrew = Crew::findCrew(cabins, cabinID);
                         if (deleteCrew == NULL)
                         {
                             cout<<"Could Not Find Crew Member With That ID. Try Again!"<<endl;
                             continue;
                         }
                         deleteCrew->deleteAssignment(startTime);
+                        int index = Crew::findCrewPosition(cabins, cabinID);
+                        cabins.erase(cabins.begin() + index);
                         cout<<"Removed " + cabinID + " From The Flight\n"<<endl;
                         counter++;
                     }
