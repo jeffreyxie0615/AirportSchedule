@@ -70,6 +70,23 @@ void Plane::setSchedule(vector<vector<string>> schedule)
 {
     this->schedule = schedule;
 }
+void Plane::deleteAssignment(string startTime)
+{
+    for (int i = 0; i < schedule.size(); i++)
+    {
+        if (schedule[i][0] == startTime)
+        {
+            schedule.erase(schedule.begin() + i);
+            this->setSchedule(schedule);
+            return;
+        }
+    }
+}
+void Plane::addAssignment(string startTime,string endTime)
+{
+    schedule.push_back({startTime, endTime});
+    this->setSchedule(schedule);
+}
 void Plane::add(vector<Plane*>& planes, std::string make,std::string model, std::string numTail,
                 int numSeats, int range, int minCrew, vector<vector<string>> schedule)
 {

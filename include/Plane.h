@@ -28,7 +28,8 @@ class Plane
         void setRange(int rangeCopy);
         void setMinCrew(int minCrewCopy);
         void setSchedule(vector<vector<string>> schedule);
-
+        void addAssignment(string startTime, string endTime);
+        void deleteAssignment(string startTime);
         bool availablePlanePointer(string startTime, string endTime);
         void display();
         static void add(vector<Plane*>& planes, std::string make,std::string model, std::string numTail,
